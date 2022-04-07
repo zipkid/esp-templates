@@ -1,15 +1,24 @@
 ---
 substitutions:
   name: "esp8566-12f-template"
+  time_timezone: "Europe/Brussels"
+  device_description: "esp8566-12f"
+  version: "v0.0.1"
 
 esphome:
-  name: "${name}"
+  name: ${name}
   # Automatically add the mac address to the name
   # so you can use a single firmware for all devices
   name_add_mac_suffix: true
-  
-esp8266:
+  platform: ESP8266
   board: esp01_1m
+  comment: '${device_description}'
+  project:
+    name: zipkid.${name}
+    version: "${version}"
+
+# esp8266:
+#   board: esp01_1m
 
 # Enable logging
 logger:
@@ -18,10 +27,13 @@ logger:
 api:
 
 ota:
+  safe_mode: true
+  reboot_timeout: 10min
+  num_attempts: 5
 
 # This should point to the public location of this yaml file.
 dashboard_import:
-  package_import_url: github://zipkid/esp-templates/esp8566-12f-template.yaml
+  package_import_url: github://zipkid/esp-templates/esp8566-12f-template.yaml@main
 
 wifi:
   networks: []
@@ -33,3 +45,15 @@ wifi:
     password: "esp8566-12f"
 
 captive_portal:
+
+time:
+  - platform: homeassistant
+    id: time_homeassistant
+    timezone: "${time_timezone}"
+
+  - platform: sntp
+    id: time_sntp
+    timezone: "${time_timezone}"
+
+web_server:
+  port: 80
