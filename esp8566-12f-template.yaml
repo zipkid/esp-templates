@@ -36,9 +36,8 @@ dashboard_import:
   package_import_url: github://zipkid/esp-templates/esp8566-12f-template.yaml@main
 
 wifi:
-  networks: []
-    # - ssid: !secret wifi_ssid
-    #   password: !secret wifi_password
+  # - ssid: !secret wifi_ssid
+  #   password: !secret wifi_password
 
   # Set up a wifi access point
   ap:
