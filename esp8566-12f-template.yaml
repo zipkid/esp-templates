@@ -10,15 +10,15 @@ esphome:
   # Automatically add the mac address to the name
   # so you can use a single firmware for all devices
   name_add_mac_suffix: true
-  platform: ESP8266
-  board: esp01_1m
+  # platform: ESP8266
+  # board: esp01_1m
   comment: '${device_description}'
   project:
     name: zipkid.${name}
     version: "${version}"
 
-# esp8266:
-#   board: esp01_1m
+esp8266:
+  board: esp01_1m
 
 # Enable logging
 logger:
